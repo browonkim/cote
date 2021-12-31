@@ -1,31 +1,21 @@
 def solution(gems):
-
-    def resolve(s: list, front: int):
-        size = len(s)
-        i = 0
-        while i < size and s[i] in s[i+1:]:
-            i += 1
-            front += 1
-        s = s[i:]
-        return front
-
-    gemset = set()
-    gemset.update(gems)
-    count, goal = set(), len(gemset)
-    dequeue = []
-    minimum = 10000000
+    box = {}
     left, right = 0, 0
+    min_left, min_right = 0, len(gems)
     for seq, gem in enumerate(gems):
-        dequeue.append(gem)
-        count.add(gem)
-        temp = resolve(dequeue, left)
-        if len(count) == goal:
-            if minimum > len(dequeue):
-                minimum = len(dequeue)
-                right = seq
-                left = temp
+        right = seq
+        if gem not in box:
+            box[gem] = 1
+            min_left, min_right = left, right
+        else:
+            box[gem] += 1
+            while box[gems[left]] > 1 and left <= right:
+                box[gems[left]] -= 1
+                left += 1
+            if min_right - min_left + 1 > right - left + 1:
+                min_right, min_left = right, left
+    return [min_left + 1, min_right + 1]
 
-    return [left+1, right+1]
 
 if __name__ == "__main__":
-    print(solution((["DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"])))
+    print(solution((["XYZ", "XYZ", "XYZ"])))
