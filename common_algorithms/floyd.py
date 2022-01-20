@@ -1,12 +1,14 @@
 import sys
 
-
 def floyd(n, edges):
     dist = [[sys.maxsize] * n for i in range(n)]
     next_node = [[-1] * n for i in range(n)]
     for u, v, w in edges:
+        # if undirected graph
         dist[u][v] = w
+        dist[v][u] = w
         next_node[u][v] = v
+        next_node[v][u] = u
     for v in range(n):
         dist[v][v] = 0
         next_node[v][v] = v
