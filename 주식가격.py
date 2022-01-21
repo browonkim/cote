@@ -13,5 +13,6 @@ def solution(prices):
         result[s] = l - s - 1
     return result
 
-if __name__ =="__main__":
-    print(solution([5,4,3,2,1]))
+
+if __name__ == "__main__":
+    print(solution([5, 4, 3, 2, 1]))

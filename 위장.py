@@ -7,8 +7,8 @@ def solution(clothes):
         else:
             closet[j] += 1
     for i in closet.values():
-        answer *= i+1
-    return answer -1
+        answer *= i + 1
+    return answer - 1
 
 
 if __name__ == "__main__":
