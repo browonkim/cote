@@ -1,3 +1,4 @@
 ignore_readme
 ignore*
 ignore*.*
+/.idea/vcs.xml
